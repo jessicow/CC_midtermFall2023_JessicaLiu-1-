@@ -11,7 +11,7 @@ function setup(){
 
 function draw(){
   
-  push(); 
+  push();
   translate(50, 780);
    leaves = tree.branch(200);
   pop(); 
