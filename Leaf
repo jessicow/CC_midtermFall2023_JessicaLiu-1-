@@ -1,0 +1,10 @@
+class Leaf{
+    constructor(){
+        this.speed = random(1, 3); 
+        this.size = random(5, 20); 
+    }
+
+    fall(){
+
+    }
+}

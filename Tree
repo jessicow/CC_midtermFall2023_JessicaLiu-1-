@@ -1,0 +1,45 @@
+var leaves = []; 
+
+class Tree{
+    constructor(x){
+        this.x = x; 
+    }
+
+    branch(len){ //this branch method was referenced from chatgpt
+      
+      stroke(70, 40, 20);
+      strokeCap(ROUND); 
+      strokeWeight(map(len, 10, 100, 1, 15)); 
+
+      line(0, -len, 0, 0); 
+      translate(0, -len); 
+
+      if(len>10){
+        push();
+
+        rotate(random(20, 30)); // right branch !! COME BACK, MAY NEED TO CHANGE RANDOM AND MODIFY NO LOOP
+        this.branch(len*.7); 
+        
+        rotate(random(-50, -60)); // left branch
+        this.branch(len*.7); 
+         
+        pop();
+         
+     }
+     else {
+        noStroke(); 
+        ellipse(0, 0, 5, 15);
+        leaves.push({ x: 0, y: 0 });
+        //leaves.push(ellipse(0, 0, 5, 15)); 
+        for(let i = 0; i<leaves.length; i++){
+            print(leaves[i].y);
+        }
+        
+
+     return leaves; 
+
+
+
+    }
+}
+}
