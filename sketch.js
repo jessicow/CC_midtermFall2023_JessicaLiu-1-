@@ -1,37 +1,64 @@
-
-let leafA;
-var leaf = []; 
-var singleLeaf = []; 
 function setup(){
+  angleMode(RADIANS);
     createCanvas(800, 800); 
     background(129, 220, 255);  
     noStroke(); 
-    noLoop(); 
+    
     tree = new Tree(100); 
+
 
 }
 
-function draw(){
+let petals = []; 
+//petal class
+function petal() {
+  // initialize coordinates
+  this.posX = 0;
+  this.posY = random(-50, 0);
+  this.initialangle = random(10, 0 * PI);
+  this.size = random(5, 10);
 
-  //background(129, 220, 255); 
+  this.radius = sqrt(random(pow(width / 1, 2)));
+  this.update = function(time) {
+    // x position follows a circle
+    let w = 0.1; // angular speed
+    let angle = w * time + this.initialangle;
+    this.posX = width / 1 + this.radius * tan(angle); //calculates tangent of the angle the petals fall
+    this.posY += pow(this.size, 0.5);
+
+    // delete petal if past end of screen
+    if (this.posY > height) {
+      let index = petals.indexOf(this);
+      petals.splice(index, 1);
+    }
+  };
+  this.display = function() {
+    ellipse(this.posX, this.posY, this.size);
+  };
+}
+
+function draw() {
+  background(153, 235, 255);  
+  let t = frameCount / 100; //updates time
+
+  for (var i = 0; i < 10; i++) {
+    petals.push(new petal()); //append petal object
+  } //random number of petals each frame
+
+  //loop through petals
+  for (let blossom of petals) {
+    blossom.update(t); //update petal position
+    blossom.display(); //draw petal
+  }
 
   push();
-  angleMode(DEGREES); 
   translate(50, 780);
-     leaf = tree.branch(200);
-     /*
-     for(let i = 0; i<leaf.length; i++){
-      fill(255); 
-      noStroke(); 
-      ellipse(leaf[i].x, leaf[i].y, 5, 15); 
-      console.log("Displaying ellipse at:", leaf[i].x, leaf[i].y);
-      singleLeaf.push(new Leaf(leaf[i].x+50, leaf[i].y+50, 5, 15)); */ 
-    }
-  pop(); 
+     tree.branch(200);
+  pop();
+}
 
-  for(let i = 0; i<singleLeaf.length; i++){
-    singleLeaf[i].display(); 
-  }
+
+  
 
 
 
