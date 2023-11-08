@@ -7,30 +7,30 @@ class Tree{
       
       stroke(70, 40, 20); //sets branch color to dark brown
       strokeCap(ROUND);  //sets edges of branches to a round cap
-      strokeWeight(map(len, 10, 100, 1, 15));  // map helps create a more realistic looking tree 
+      strokeWeight(map(len, 10, 100, 1, 15));  // map helps create a more realistic tree
 
-      line(0, 0, 0, -len); 
-      translate(0, -len); 
+      line(0, 0, 0, -len); //draws the lines of the tree
+      translate(0, -len); //moves the origin to (0, -len) so that the branches get drawn at the end of each one
 
 
-      if(len>10){
-        push();
+      if(len>10){ //stops drawing branches while len>10
+        push(); //I used push and pop so that the rotate function doesn't affect certain branches
 
-        rotate(0.5); // right branch !! COME BACK, MAY NEED TO CHANGE RANDOM AND MODIFY NO LOOP
-        this.branch(len*0.7); 
+        rotate(0.5); // right branch
+        this.branch(len*0.7); //rotates the branch 
         
         rotate(-0.5); // left branch
-        this.branch(len*0.7); 
+        this.branch(len*0.7);  //rotates the branches
          
         pop(); 
          
      }
-     else {
-        noStroke();
+     else { //leaves get drawn at the end of branches
+        noStroke(); //prevents outlines of the leaves being drawn
 
-        fill(225, 40, 170, 255); 
+        fill(225, 40, 170, 255); //fills the ellipses with a pinkish color
 
-        ellipse(0, 0, 5, 15)
+        ellipse(0, 0, 5, 15); //ellipses function draws the leaves
      }    
 
 
