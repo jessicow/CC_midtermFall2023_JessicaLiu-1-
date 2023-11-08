@@ -1,13 +1,13 @@
 class Tree{
-    constructor(x){
+    constructor(x){ //constructor takes parameter that will set the angles of the tree
         this.x = x; 
     }
 
     branch(len){ //this branch method was referenced from chatgpt
       
-      stroke(70, 40, 20);
-      strokeCap(ROUND); 
-      strokeWeight(map(len, 10, 100, 1, 15)); 
+      stroke(70, 40, 20); //sets branch color to dark brown
+      strokeCap(ROUND);  //sets edges of branches to a round cap
+      strokeWeight(map(len, 10, 100, 1, 15));  // map helps create a more realistic looking tree 
 
       line(0, 0, 0, -len); 
       translate(0, -len); 
